@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Invitación a los 18 años de Lluvia Naomi - 20 de Noviembre 2026">
+    <meta name="theme-color" content="#c68e9f">
+    <title>18 Años - Lluvia Naomi 🌧️✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Poppins', sans-serif;
+            color: #f0e6e9;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Efecto de lluvia elegante */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .drop {
+            position: absolute;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(200,180,255,0.2));
+            width: 2px;
+            height: 12px;
+            border-radius: 2px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        
+        .invitation-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(20, 15, 45, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(128, 0, 128, 0.85), rgba(255, 105, 180, 0.85));
+            padding: 3rem 1.5rem 5rem 1.5rem;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #ff99cc; }
+            to { text-shadow: 0 0 15px #fff, 0 0 25px #ff66aa; }
+        }
+        
+        .badge-18 {
+            display: inline-block;
+            background: gold;
+            color: #4a0036;
+            font-weight: bold;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .quinceanera-name {
+            font-size: 2.8rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 70px;
+            color: #fff;
+            margin-top: 1rem;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        
+        section { padding: 2.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1.8rem;
+            color: #ffccdd;
+        }
+        
+        .section-title:after {
+            content: "✨";
+            display: block;
+            font-size: 1.6rem;
+            letter-spacing: 8px;
+            margin-top: 0.2rem;
+        }
+        
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(15px);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: -3.5rem;
+            position: relative;
+            z-index: 10;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255,215,0,0.3);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+        }
+        
+        .countdown { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+        
+        .time-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.8rem 1rem;
+            border-radius: 1.5rem;
+            min-width: 85px;
+            text-align: center;
+            border: 1px solid rgba(255,200,230,0.4);
+        }
+        
+        .time-number { font-size: 2.4rem; font-weight: 800; color: #ffccdd; }
+        .time-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 12px 25px -8px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.3s, filter 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .gallery-item img { width: 100%; height: 210px; object-fit: cover; transition: transform 0.4s; display: block; }
+        .gallery-item:hover { transform: scale(1.02); filter: brightness(1.05); }
+        
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: all 0.2s;
+        }
+        
+        .timeline-item:hover { background: rgba(255,255,255,0.15); transform: translateX(8px); }
+        .timeline-icon { font-size: 2rem; min-width: 50px; text-align: center; }
+        
+        .gift-table { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+        
+        .gift-card {
+            background: rgba(20, 12, 40, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+            width: 240px;
+            border: 1px solid rgba(255,200,220,0.25);
+            transition: all 0.3s;
+        }
+        
+        .gift-card:hover { transform: translateY(-6px); background: rgba(45, 30, 70, 0.8); }
+        .gift-card i { font-size: 2.8rem; color: #ffc0cb; margin-bottom: 0.5rem; }
+        .btn-gift {
+            background: rgba(255,200,220,0.2);
+            border: 1px solid rgba(255,200,220,0.5);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            color: white;
+            transition: 0.2s;
+        }
+        .btn-gift:hover { background: #ff99cc; color: #1e1a3a; border-color: #ff99cc; }
+        
+        .address-box {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .map-link {
+            background: #ff99cc;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            color: #1e1a3a;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: 0.2s;
+        }
+        .map-link:hover { background: #ff66aa; transform: scale(1.02); }
+        
+        .dress-code {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .dress-badge {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3rem;
+            padding: 0.6rem 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+        }
+        
+        .confirm-form {
+            max-width: 550px;
+            margin: 0 auto;
+            background: rgba(10, 5, 25, 0.6);
+            padding: 2rem;
+            border-radius: 2rem;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 2rem;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            font-family: inherit;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-confirm {
+            background: linear-gradient(95deg, #ff99cc, #b76fe4);
+            color: #1e1a3a;
+            border: none;
+            width: 100%;
+            padding: 0.85rem;
+            font-weight: bold;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .btn-confirm:hover { opacity: 0.9; transform: scale(0.98); }
+        
+        .admin-panel { display: none; background: rgba(0,0,0,0.7); margin-top: 2rem; padding: 1rem; border-radius: 1.5rem; text-align: center; }
+        .admin-btn { background: #ff99cc; color: #1a1a2e; border: none; padding: 0.4rem 1rem; border-radius: 2rem; cursor: pointer; margin: 0.3rem; font-weight: bold; }
+        
+        .floating-share {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+            z-index: 100;
+            transition: 0.2s;
+        }
+        .floating-share:hover { transform: scale(1.08); background: #128C7E; }
+        
+        /* Botón de música mejorado */
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(0,0,0,0.7);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255,153,204,0.6);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .music-control:hover {
+            transform: scale(1.1);
+            border-color: #ff99cc;
+            background: rgba(0,0,0,0.85);
+        }
+        .music-control i {
+            font-size: 1.8rem;
+            color: #ffccdd;
+            transition: 0.2s;
+        }
+        .music-control.playing i {
+            color: #ff66aa;
+            text-shadow: 0 0 8px #ff99cc;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { text-shadow: 0 0 0px #ff99cc; }
+            100% { text-shadow: 0 0 12px #ff66aa; }
+        }
+        
+        /* Indicador de canción actual */
+        .now-playing {
+            position: fixed;
+            bottom: 95px;
+            left: 25px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: #ffccdd;
+            pointer-events: none;
+            z-index: 99;
+            border: 1px solid rgba(255,153,204,0.3);
+            white-space: nowrap;
+        }
+        
+        .mensaje-especial {
+            background: linear-gradient(135deg, rgba(255,153,204,0.2), rgba(128,0,128,0.2));
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        @media (max-width: 680px) {
+            .hero h1 { font-size: 2.4rem; }
+            .quinceanera-name { font-size: 1.7rem; }
+            .time-number { font-size: 1.6rem; }
+            .time-box { min-width: 65px; padding: 0.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .now-playing { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="rain" id="rainContainer"></div>
+
+<div class="invitation-card">
+    <div class="hero">
+        <div class="badge-18">🎂 MAYORÍA DE EDAD 🎂</div>
+        <h1>✨ ¡Mis 18 Años! ✨</h1>
+        <p>🌧️ Una noche para celebrar mi nuevo comienzo 🌧️</p>
+        <div class="quinceanera-name">Lluvia Naomi</div>
+    </div>
+
+    <div class="countdown-container">
+        <div class="countdown" id="countdownTimer">
+            <div class="time-box"><span class="time-number" id="days">00</span><div class="time-label">Días</div></div>
+            <div class="time-box"><span class="time-number" id="hours">00</span><div class="time-label">Horas</div></div>
+            <div class="time-box"><span class="time-number" id="minutes">00</span><div class="time-label">Minutos</div></div>
+            <div class="time-box"><span class="time-number" id="seconds">00</span><div class="time-label">Segundos</div></div>
+        </div>
+        <p style="margin-top: 1rem;"><i class="fas fa-calendar-alt"></i> <strong>20 de Noviembre, 2026</strong> · 8:00 PM · <i class="fas fa-music"></i> Fiesta temática "Noche de lluvia y estrellas"</p>
+    </div>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-camera-retro"></i> Recuerdos que brillan</h2>
+        <div class="gallery" id="galleryContainer"></div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-chart-line"></i> 18 años, 18 momentos</h2>
+        <div class="timeline">
+            <div class="timeline-item"><div class="timeline-icon">🍼</div><div><strong>2008</strong> – Llegó una estrella llamada Lluvia</div></div>
+            <div class="timeline-item"><div class="timeline-icon">📖</div><div><strong>2012</strong> – Primeros pasos y sonrisas</div></div>
+            <div class="timeline-item"><div class="timeline-icon">🎓</div><div><strong>2024</strong> – Sueños que crecen</div></div>
+            <div class="timeline-item"><div class="timeline-icon">🎂</div><div><strong>2026</strong> – 18 velas, un nuevo horizonte</div></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-gift"></i> Mesa de Regalos</h2>
+        <div class="gift-table">
+            <div class="gift-card"><i class="fas fa-envelope-open-text"></i><h3>Lluvia de sobres</h3><button class="btn-gift" onclick="alert('🎁 ¡Muchas gracias por tu cariño!')">Lo quiero</button></div>
+            <div class="gift-card"><i class="fas fa-store"></i><h3>Liverpool</h3><button class="btn-gift" onclick="window.open('https://www.liverpool.com.mx','_blank')">Lista #1820</button></div>
+            <div class="gift-card"><i class="fas fa-mobile-alt"></i><h3>Transferencia</h3><button class="btn-gift" onclick="navigator.clipboard.writeText('646180123456789012'); alert('CLABE copiada ✔️')">Copiar CLABE</button></div>
+            <div class="gift-card"><i class="fab fa-amazon"></i><h3>Amazon wishlist</h3><button class="btn-gift" onclick="window.open('https://www.amazon.com.mx/registro','_blank')">Ver lista</button></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Lugar del evento</h2>
+        <div class="address-box">
+            <i class="fas fa-landmark fa-2x"></i>
+            <p><strong>Centro Cultural Mexiquense Bicentenario</strong><br>Entrada principal · Sala de eventos "Espejo de lluvia"<br>CDMX, México</p>
+            <a href="https://maps.app.goo.gl/bW6gwdrrYA9FpV3X7" target="_blank" class="map-link"><i class="fas fa-directions"></i> Abrir en Google Maps</a>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-tshirt"></i> Dress code: Brilla como estrella</h2>
+        <div class="dress-code">
+            <span class="dress-badge"><i class="fas fa-gem"></i> Elegancia nocturna</span>
+            <span class="dress-badge"><i class="fas fa-female"></i> Vestido largo / corto glam</span>
+            <span class="dress-badge"><i class="fas fa-male"></i> Traje o saco elegante</span>
+            <span class="dress-badge"><i class="fas fa-palette"></i> Colores: plateado, morado, rosa</span>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-heart"></i> Un mensaje de Lluvia</h2>
+        <div class="mensaje-especial">
+            <i class="fas fa-cloud-rain"></i> “Llegar a los 18 no es solo una fiesta, es el inicio de mi vuelo. Cada uno de ustedes ha sido parte de esta tormenta hermosa que soy hoy. ¡Los quiero ver bailar, reír y celebrar como si no hubiera un mañana!” <br><br>
+            <strong>Con todo mi corazón, Lluvia Naomi 🌧️💜</strong>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-check-double"></i> Confirmar asistencia</h2>
+        <div class="confirm-form">
+            <form id="rsvpForm">
+                <div class="form-group"><input type="text" id="nombre" placeholder="Nombre completo" required></div>
+                <div class="form-group"><input type="email" id="email" placeholder="Correo (opcional)"></div>
+                <div class="form-group"><select id="asistencia" required><option value="">-- ¿Me acompañarás? --</option><option value="si">¡Sí, ahí estaré! 🥂</option><option value="no">Lo siento, no podré ir</option></select></div>
+                <div class="form-group"><input type="number" id="acompanantes" placeholder="Número de acompañantes"></div>
+                <button type="submit" class="btn-confirm"><i class="fas fa-calendar-check"></i> Confirmar ahora</button>
+            </form>
+            <div id="formFeedback" class="confirmation-message"></div>
+        </div>
+        <div class="admin-panel" id="adminPanel">
+            <h4><i class="fas fa-lock"></i> Administrador de confirmaciones</h4>
+            <button id="verConfirmacionesBtn" class="admin-btn">📋 Ver respuestas</button>
+            <button id="borrarConfirmacionesBtn" class="admin-btn">🗑️ Borrar todo</button>
+            <div id="listaConfirmaciones"></div>
+        </div>
+    </section>
+
+    <footer>
+        <i class="fas fa-cloud-moon"></i> Confirma antes del 10 de noviembre, 2026  <i class="fas fa-champagne-glasses"></i><br>
+        ¡Te esperamos para brindar por la nueva etapa de Lluvia!
+    </footer>
+</div>
+
+<div class="floating-share" id="shareBtn"><i class="fab fa-whatsapp"></i></div>
+
+<!-- Reproductor de música con control -->
+<div class="music-control" id="musicBtn">
+    <i class="fas fa-play"></i>
+</div>
+<div class="now-playing" id="nowPlaying">🎵 Lana del Rey - Esperando...</div>
+
+<script>
+    // === LLUVIA DE FONDO ===
+    function createRain() {
+        const rainContainer = document.getElementById('rainContainer');
+        for(let i = 0; i < 120; i++) {
+            const drop = document.createElement('div');
+            drop.classList.add('drop');
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = Math.random() * 1.8 + 0.8 + 's';
+            drop.style.animationDelay = Math.random() * 5 + 's';
+            drop.style.opacity = Math.random() * 0.6 + 0.2;
+            drop.style.height = Math.random() * 18 + 6 + 'px';
+            rainContainer.appendChild(drop);
+        }
+    }
+    createRain();
+
+    // === CONTADOR: 20 de Noviembre 2026, 8:00 PM ===
+    const eventDate = new Date(2026, 10, 20, 20, 0, 0);
+    let yaMostradoMensaje = false;
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventDate.getTime() - now;
+        if (distance < 0) {
+            document.getElementById('days').innerHTML = "00";
+            document.getElementById('hours').innerHTML = "00";
+            document.getElementById('minutes').innerHTML = "00";
+            document.getElementById('seconds').innerHTML = "00";
+            if (!yaMostradoMensaje) {
+                const container = document.querySelector('.countdown-container p');
+                if (container && !container.innerHTML.includes("HOY ES")) {
+                    container.innerHTML += " <strong>🎉 ¡HOY ES LA GRAN CELEBRACIÓN, LLEGÓ EL DÍA! 🎉</strong>";
+                    yaMostradoMensaje = true;
+                }
+            }
+            return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+        const seconds = Math.floor((distance % (60 * 1000)) / 1000);
+        document.getElementById('days').innerHTML = days < 10 ? '0'+days : days;
+        document.getElementById('hours').innerHTML = hours < 10 ? '0'+hours : hours;
+        document.getElementById('minutes').innerHTML = minutes < 10 ? '0'+minutes : minutes;
+        document.getElementById('seconds').innerHTML = seconds < 10 ? '0'+seconds : seconds;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // === GALERÍA ===
+    const galleryImages = [
+        "https://picsum.photos/id/20/400/400",
+        "https://picsum.photos/id/54/400/400",
+        "https://picsum.photos/id/64/400/400",
+        "https://picsum.photos/id/96/400/400",
+        "https://picsum.photos/id/169/400/400",
+        "https://picsum.photos/id/30/400/400"
+    ];
+    const galleryContainer = document.getElementById('galleryContainer');
+    galleryImages.forEach(src => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        const img = document.createElement('img');
+        img.src = src;
+        item.appendChild(img);
+        galleryContainer.appendChild(item);
+    });
+
+    // === ADMIN POR PARÁMETRO URL ===
+    const urlParams = new URLSearchParams(window.location.search);
+    const adminPanel = document.getElementById('adminPanel');
+    if (urlParams.get('admin') === 'true') {
+        adminPanel.style.display = 'block';
+    } else {
+        adminPanel.style.display = 'none';
+    }
+
+    // === CONFIRMACIONES ===
+    function guardarConfirmacion(confirmacion) {
+        let lista = JSON.parse(localStorage.getItem('confirmaciones18')) || [];
+        lista.push(confirmacion);
+        localStorage.setItem('confirmaciones18', JSON.stringify(lista));
+    }
+
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const asistencia = document.getElementById('asistencia').value;
+        const acompanantes = document.getElementById('acompanantes').value || "0";
+        if (!nombre || !asistencia) {
+            document.getElementById('formFeedback').innerHTML = '<span style="color:#ffb3c6;">❌ Completa nombre y asistencia.</span>';
+            return;
+        }
+        const confirmacion = { nombre, email, asistencia, acompanantes, fecha: new Date().toLocaleString() };
+        guardarConfirmacion(confirmacion);
+        document.getElementById('formFeedback').innerHTML = `<span style="color:#c3ffb2;">✨ ¡Gracias ${nombre}, nos vemos el 20 de Noviembre! ✨</span>`;
+        document.getElementById('rsvpForm').reset();
+        setTimeout(() => document.getElementById('formFeedback').innerHTML = '', 5000);
+    });
+
+    if (urlParams.get('admin') === 'true') {
+        const verBtn = document.getElementById('verConfirmacionesBtn');
+        const borrarBtn = document.getElementById('borrarConfirmacionesBtn');
+        const listaDiv = document.getElementById('listaConfirmaciones');
+        function mostrarLista() {
+            const lista = JSON.parse(localStorage.getItem('confirmaciones18')) || [];
+            if (lista.length === 0) listaDiv.innerHTML = '<p><em>Sin respuestas aún.</em></p>';
+            else {
+                let html = '<ul style="list-style:none; text-align:left;">';
+                lista.forEach(c => {
+                    html += `<li style="border-bottom:1px solid #aaa; padding:8px;"><strong>${c.nombre}</strong> – ${c.asistencia === 'si' ? '✅ Asiste' : '❌ No asiste'} (${c.acompanantes} pers)<br><small>📧 ${c.email || '-'} · ${c.fecha}</small></li>`;
+                });
+                html += '</ul>';
+                listaDiv.innerHTML = html;
+            }
+        }
+        verBtn.addEventListener('click', mostrarLista);
+        borrarBtn.addEventListener('click', () => { if(confirm('¿Borrar todas las confirmaciones?')) { localStorage.removeItem('confirmaciones18'); listaDiv.innerHTML = '<p><em>Lista vacía.</em></p>'; } });
+    }
+
+    // === COMPARTIR WHATSAPP ===
+    document.getElementById('shareBtn').addEventListener('click', () => {
+        const mensaje = "✨ ¡Estás invitado a mis 18 años! ✨\n\n🎂 Lluvia Naomi cumple la mayoría de edad y quiero celebrarlo contigo.\n📅 20 de Noviembre 2026 · 8 PM\n📍 Centro Cultural Mexiquense Bicentenario\n💜 Confirma tu asistencia: " + window.location.href;
+        window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
+    });
+
+    // === REPRODUCTOR DE MÚSICA CON LANA DEL REY.MP3 ===
+    let audio = null;
+    let musicPlaying = false;
+    const musicBtn = document.getElementById('musicBtn');
+    const nowPlayingDiv = document.getElementById('nowPlaying');
+    const musicIcon = musicBtn.querySelector('i');
+
+    function initAudio() {
+        if (audio) return;
+        audio = new Audio();
+        // ⚠️ IMPORTANTE: Coloca tu archivo "Lana del Rey.mp3" en la misma carpeta que este HTML
+        audio.src = 'Lana del Rey.mp3';
+        audio.loop = true;
+        audio.volume = 0.35;
+        
+        // Eventos para depuración
+        audio.addEventListener('canplaythrough', () => {
+            console.log('✅ Audio listo para reproducir');
+            nowPlayingDiv.innerHTML = '🎵 Lana del Rey - Sonando...';
+        });
+        audio.addEventListener('error', (e) => {
+            console.error('❌ Error cargando el audio:', e);
+            nowPlayingDiv.innerHTML = '⚠️ No se encontró "Lana del Rey.mp3"';
+            musicBtn.style.opacity = '0.5';
+        });
+        audio.addEventListener('play', () => {
+            musicPlaying = true;
+            musicBtn.classList.add('playing');
+            musicIcon.className = 'fas fa-pause';
+            nowPlayingDiv.innerHTML = '🎵 Lana del Rey - Reproduciendo ♪';
+        });
+        audio.addEventListener('pause', () => {
+            musicPlaying = false;
+            musicBtn.classList.remove('playing');
+            musicIcon.className = 'fas fa-play';
+            nowPlayingDiv.innerHTML = '🎵 Lana del Rey - Pausado';
+        });
+    }
+
+    // Control de reproducción con el botón
+    musicBtn.addEventListener('click', () => {
+        initAudio();
+        
+        if (musicPlaying) {
+            audio.pause();
+        } else {
+            // Intenta reproducir (puede ser bloqueado por políticas del navegador)
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Reproducción automática bloqueada:', error);
+                    nowPlayingDiv.innerHTML = '🔊 Haz clic aquí para iniciar música';
+                    // Alternativa: mostrar mensaje amigable
+                    alert('🎵 Para escuchar la música, haz clic nuevamente. Los navegadores requieren interacción del usuario.');
+                });
+            }
+        }
+    });
+
+    // Opcional: mostrar mensaje si el archivo no existe (simulación)
+    setTimeout(() => {
+        if (audio && audio.readyState === 0 && !audio.src.includes('blob')) {
+            nowPlayingDiv.innerHTML = '💿 Coloca "Lana del Rey.mp3" en la carpeta del sitio';
+        }
+    }, 2000);
+</script>
+</body>
+</html>

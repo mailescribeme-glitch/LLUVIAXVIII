@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Invitación a los 18 años de Lluvia Naomi - 18 de Julio 2026">
+    <meta name="theme-color" content="#BF9180">
+    <title>18 Años - Lluvia Naomi 🌧️✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(145deg, #F2D3D0 0%, #D9A59A 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #4a2a2a;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .drop {
+            position: absolute;
+            background: linear-gradient(to bottom, rgba(255,240,245,0.7), rgba(191,145,128,0.4));
+            width: 2px;
+            height: 15px;
+            border-radius: 2px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        
+        .confeti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            animation: confetiFall 3s linear forwards;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        @keyframes confetiFall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .invitation-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(242, 211, 208, 0.94);
+            backdrop-filter: blur(6px);
+            border-radius: 3rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #BF9180, #D9A59A);
+            padding: 3rem 1.5rem 5rem 1.5rem;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+            letter-spacing: 2px;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 5px rgba(255,255,255,0.5), 0 0 10px rgba(255,153,204,0.3); }
+            to { text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 25px rgba(255,105,180,0.6); }
+        }
+        
+        .badge-18 {
+            display: inline-block;
+            background: #F2D3D0;
+            color: #BF9180;
+            font-weight: bold;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .quinceanera-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 70px;
+            color: #fff;
+            margin-top: 1rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        
+        section { padding: 2.5rem 2rem; border-bottom: 1px solid rgba(191,145,128,0.25); }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1.8rem;
+            color: #6b3a2a;
+        }
+        
+        .section-title:after {
+            content: "🌧️";
+            display: block;
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            margin-top: 0.2rem;
+        }
+        
+        .countdown-container {
+            background: rgba(242, 211, 208, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: -3.5rem;
+            position: relative;
+            z-index: 10;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(191,145,128,0.5);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15);
+        }
+        
+        .countdown { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+        
+        .time-box {
+            background: rgba(191,145,128,0.25);
+            padding: 0.8rem 1rem;
+            border-radius: 1.5rem;
+            min-width: 85px;
+            text-align: center;
+            border: 1px solid rgba(191,145,128,0.5);
+            transition: transform 0.3s;
+        }
+        .time-box:hover { transform: scale(1.05); }
+        
+        .time-number { font-size: 2.2rem; font-weight: 800; color: #6b3a2a; }
+        .time-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #8a5a4a; }
+        
+        .emoji-float {
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 12px 25px -8px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 2px solid white;
+        }
+        .gallery-item a { display: block; }
+        .gallery-item img { width: 100%; height: 210px; object-fit: cover; transition: transform 0.4s; display: block; }
+        .gallery-item:hover { transform: scale(1.02); }
+        
+        .mi-historia-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .historia-card {
+            background: rgba(191,145,128,0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            width: 260px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(191,145,128,0.3);
+        }
+        .historia-card:hover { transform: translateY(-8px); background: rgba(191,145,128,0.3); }
+        .historia-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem; border: 2px solid white; }
+        .historia-card .historia-icon { font-size: 2rem; margin-bottom: 0.3rem; }
+        .historia-card h3 { color: #6b3a2a; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .historia-card p { font-size: 0.85rem; color: #4a2a1e; }
+        
+        /* Swiper */
+        .swiper { width: 100%; padding: 1rem 0 2rem 0; }
+        .swiper-slide { text-align: center; display: flex; justify-content: center; align-items: center; }
+        .swiper-slide img { width: 100%; max-width: 260px; height: 260px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 12px 25px -8px rgba(0,0,0,0.2); border: 3px solid white; }
+        .swiper-button-next, .swiper-button-prev { color: #BF9180; background: rgba(255,255,255,0.5); width: 40px; height: 40px; border-radius: 50%; }
+        .swiper-pagination-bullet-active { background: #BF9180; }
+        
+        /* Mensaje de presente (original, fuera del carrusel) */
+        .presente-mensaje {
+            text-align: center;
+            background: rgba(191,145,128,0.15);
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            margin: 1rem auto 0;
+            max-width: 500px;
+            border: 1px dashed #BF9180;
+            transition: all 0.3s;
+        }
+        .presente-mensaje:hover {
+            background: rgba(191,145,128,0.25);
+            transform: scale(1.01);
+        }
+        .presente-mensaje i {
+            font-size: 1.8rem;
+            color: #BF9180;
+            margin-bottom: 0.3rem;
+        }
+        .presente-mensaje p {
+            font-size: 0.85rem;
+            color: #6b3a2a;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .presente-mensaje small {
+            font-size: 0.7rem;
+            color: #8a5a4a;
+        }
+        
+        .map-container { border-radius: 1.5rem; overflow: hidden; margin-top: 1rem; }
+        .map-container iframe { width: 100%; height: 300px; border: 0; }
+        
+        .address-box {
+            background: rgba(242, 211, 208, 0.85);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+            border: 1px solid #D9A59A;
+        }
+        
+        .dress-code-simple {
+            text-align: center;
+            background: rgba(191,145,128,0.15);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #D9A59A;
+        }
+        .dress-code-simple i { font-size: 2rem; color: #BF9180; margin-bottom: 0.5rem; }
+        .dress-code-simple p { font-size: 1.1rem; font-weight: 500; color: #6b3a2a; }
+        .dress-code-simple small { font-size: 0.8rem; color: #8a5a4a; }
+        
+        .secret-card { max-width: 400px; margin: 0 auto; cursor: pointer; }
+        .envelope {
+            background: #D9A59A;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .envelope:hover { transform: scale(1.02); background: #BF9180; }
+        .envelope i { font-size: 3rem; color: white; }
+        .envelope p { color: white; font-weight: 500; margin-top: 0.5rem; }
+        .secret-message {
+            display: none;
+            background: rgba(242, 211, 208, 0.95);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            border: 1px solid #BF9180;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .confirm-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(242, 211, 208, 0.9);
+            padding: 2rem;
+            border-radius: 2rem;
+            text-align: center;
+            border: 1px solid #D9A59A;
+        }
+        .confirm-form input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 2rem;
+            border: 1px solid #D9A59A;
+            background: white;
+            font-family: inherit;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .btn-confirm-wa {
+            background: #25D366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 1rem;
+            font-weight: bold;
+            border-radius: 3rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+        .btn-confirm-wa:hover { background: #128C7E; transform: scale(0.98); }
+        
+        .admin-panel { display: none; background: rgba(191,145,128,0.8); margin-top: 2rem; padding: 1rem; border-radius: 1.5rem; text-align: center; }
+        .admin-btn { background: white; color: #BF9180; border: none; padding: 0.4rem 1rem; border-radius: 2rem; cursor: pointer; margin: 0.3rem; font-weight: bold; }
+        
+        .floating-share, .floating-calendar {
+            position: fixed;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: 0.2s;
+        }
+        .floating-share { bottom: 25px; right: 25px; background: #25D366; color: white; }
+        .floating-share:hover { transform: scale(1.08); background: #128C7E; }
+        .floating-calendar { bottom: 95px; right: 25px; background: #BF9180; color: white; }
+        .floating-calendar:hover { transform: scale(1.08); background: #a87a6a; }
+        
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(191,145,128,0.9);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.7);
+            transition: all 0.3s ease;
+        }
+        .music-control:hover { transform: scale(1.1); }
+        .music-control i { font-size: 1.8rem; color: white; }
+        .music-control.playing i { color: #F2D3D0; text-shadow: 0 0 5px white; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { text-shadow: 0 0 0px #ff99cc; } 50% { text-shadow: 0 0 12px #ff66aa; } }
+        
+        .now-playing {
+            position: fixed;
+            bottom: 95px;
+            left: 25px;
+            background: rgba(191,145,128,0.9);
+            backdrop-filter: blur(5px);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: white;
+            pointer-events: none;
+            z-index: 99;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .mensaje-especial {
+            background: rgba(242, 211, 208, 0.8);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            border: 1px solid #D9A59A;
+        }
+        
+        footer { text-align: center; padding: 2rem; background: #BF9180; color: white; }
+        
+        @media (max-width: 680px) {
+            .hero h1 { font-size: 2.2rem; }
+            .quinceanera-name { font-size: 1.5rem; }
+            .time-number { font-size: 1.5rem; }
+            .time-box { min-width: 65px; padding: 0.5rem; }
+            .now-playing { display: none; }
+            .floating-calendar { bottom: 95px; right: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="rain" id="rainContainer"></div>
+
+<div class="invitation-card">
+    <div class="hero">
+        <div class="badge-18">🎓 GRADUACIÓN 2026 🎓</div>
+        <h1>✨ ¡Mis 18 Años! ✨</h1>
+        <p>🌧️ Una noche para celebrar mi nuevo comienzo 🌧️</p>
+        <div class="quinceanera-name">Lluvia Naomi</div>
+    </div>
+
+    <div class="countdown-container">
+        <div class="countdown" id="countdownTimer">
+            <div class="time-box"><span class="time-number" id="days">00</span><div class="time-label">Días <span class="emoji-float">🎈</span></div></div>
+            <div class="time-box"><span class="time-number" id="hours">00</span><div class="time-label">Horas <span class="emoji-float">🎂</span></div></div>
+            <div class="time-box"><span class="time-number" id="minutes">00</span><div class="time-label">Minutos <span class="emoji-float">🎉</span></div></div>
+            <div class="time-box"><span class="time-number" id="seconds">00</span><div class="time-label">Segundos <span class="emoji-float">✨</span></div></div>
+        </div>
+        <p style="margin-top: 1rem; color: #4a2a1e;"><i class="fas fa-calendar-alt"></i> <strong>18 de Julio, 2026</strong> · 7:00 PM</p>
+    </div>
+
+    <!-- RECUERDOS QUE BRILLAN -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-camera-retro"></i> Recuerdos que brillan</h2>
+        <div class="gallery" id="galleryContainer"></div>
+    </section>
+
+    <!-- MI HISTORIA -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-book-open"></i> Mi historia</h2>
+        <div class="mi-historia-container">
+            <div class="historia-card"><img src="momento_1.jpg" onerror="this.src='https://picsum.photos/id/20/300/300'"><div class="historia-icon">🌟</div><h3>19 de marzo 2008</h3><p>Llegó una estrella llamada Lluvia</p></div>
+            <div class="historia-card"><img src="momento_2.jpg" onerror="this.src='https://picsum.photos/id/26/300/300'"><div class="historia-icon">👣</div><h3>Primeros pasos</h3><p>Aprendiendo a caminar y sonreír</p></div>
+            <div class="historia-card"><img src="momento_3.jpg" onerror="this.src='https://picsum.photos/id/30/300/300'"><div class="historia-icon">🎓</div><h3>2026</h3><p>¡Hoy celebro mis 18 años!</p></div>
+        </div>
+    </section>
+
+    <!-- MIS GUSTOS (carrusel) -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-heart"></i> Mis gustos</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="gusto_1.jpg" onerror="this.src='https://picsum.photos/id/54/300/300'"></div>
+                <div class="swiper-slide"><img src="gusto_2.jpg" onerror="this.src='https://picsum.photos/id/64/300/300'"></div>
+                <div class="swiper-slide"><img src="gusto_3.jpg" onerror="this.src='https://picsum.photos/id/96/300/300'"></div>
+                <div class="swiper-slide"><img src="gusto_4.jpg" onerror="this.src='https://picsum.photos/id/169/300/300'"></div>
+                <div class="swiper-slide"><img src="gusto_5.jpg" onerror="this.src='https://picsum.photos/id/30/300/300'"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+        <!-- Mensaje original de presente (fuera del carrusel, elegante y sutil) -->
+        <div class="presente-mensaje">
+            <i class="fas fa-star"></i>
+            <p>✨ Si deseas regalarme algo, un pequeño detalle ✨<br>lleno de magia será un tesoro para mi corazón.</p>
+            <small>Tu presencia ya es el mejor regalo 💖</small>
+        </div>
+    </section>
+
+    <!-- LUGAR DEL EVENTO -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Lugar del evento</h2>
+        <div class="address-box">
+            <i class="fas fa-home fa-2x"></i>
+            <p><strong>Teoyolquilma Manzana 016</strong><br>Pescadores, 56334 Chimalhuacán, Méx.</p>
+        </div>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Teoyolquilma+Manzana+016+Pescadores+Chimalhuacán&output=embed" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- CÓDIGO DE VESTIMENTA SIMPLIFICADO -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-tshirt"></i> Código de vestimenta</h2>
+        <div class="dress-code-simple">
+            <i class="fas fa-rose"></i>
+            <p>🌸 Color Rosa reservado para la festejada 🌸</p>
+            <small>Te invitamos a usar otros tonos elegantes</small>
+        </div>
+    </section>
+
+    <!-- CARTA SECRETA -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-envelope"></i> Mensaje secreto</h2>
+        <div class="secret-card">
+            <div class="envelope" id="secretEnvelope">
+                <i class="fas fa-envelope-open-text"></i>
+                <p>💌 Haz clic para abrir 💌</p>
+            </div>
+            <div class="secret-message" id="secretMessage">
+                <i class="fas fa-heart" style="color: #BF9180;"></i>
+                <p>“Querido invitado, gracias por ser parte de este día tan especial. Tu presencia es el mejor regalo. ¡Te espero!”</p>
+                <p><strong>— Lluvia Naomi 🌧️💖</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENSAJE DE LLUVIA -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-heart"></i> Un mensaje de Lluvia</h2>
+        <div class="mensaje-especial">
+            <i class="fas fa-cloud-rain"></i> “Llegar a los 18 es el inicio de mi vuelo. Cada uno de ustedes ha sido parte de esta tormenta hermosa que soy hoy. ¡Los quiero ver bailar y celebrar!” <br><br>
+            <strong>Con cariño, Lluvia Naomi 🌧️💜</strong>
+        </div>
+    </section>
+
+    <!-- CONFIRMAR ASISTENCIA -->
+    <section>
+        <h2 class="section-title"><i class="fas fa-check-double"></i> Confirmar asistencia</h2>
+        <div class="confirm-form">
+            <form id="rsvpForm">
+                <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+                <button type="submit" class="btn-confirm-wa"><i class="fab fa-whatsapp"></i> Confirmar por WhatsApp</button>
+            </form>
+            <div id="formFeedback" style="margin-top: 1rem;"></div>
+        </div>
+        <div class="admin-panel" id="adminPanel">
+            <h4><i class="fas fa-lock"></i> Administrador</h4>
+            <button id="verConfirmacionesBtn" class="admin-btn">📋 Ver respuestas</button>
+            <button id="borrarConfirmacionesBtn" class="admin-btn">🗑️ Borrar todo</button>
+            <div id="listaConfirmaciones"></div>
+        </div>
+    </section>
+
+    <footer>
+        <i class="fas fa-cloud-moon"></i> ¡Confirma lo más pronto posible!  <i class="fas fa-champagne-glasses"></i>
+    </footer>
+</div>
+
+<div class="floating-share" id="shareBtn"><i class="fab fa-whatsapp"></i></div>
+<div class="floating-calendar" id="calendarBtn"><i class="fas fa-calendar-plus"></i></div>
+<div class="music-control" id="musicBtn"><i class="fas fa-play"></i></div>
+<div class="now-playing" id="nowPlaying">🎵 Lluvia - Eddie Santiago</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script>
+    // === CONFETI ===
+    function crearConfeti() {
+        const colores = ['#ff99cc', '#ff66aa', '#ffc0cb', '#ffd700', '#BF9180', '#D9A59A'];
+        for (let i = 0; i < 100; i++) {
+            const confeti = document.createElement('div');
+            confeti.classList.add('confeti');
+            confeti.style.left = Math.random() * 100 + '%';
+            confeti.style.background = colores[Math.floor(Math.random() * colores.length)];
+            confeti.style.width = Math.random() * 8 + 4 + 'px';
+            confeti.style.height = Math.random() * 12 + 6 + 'px';
+            confeti.style.animationDuration = Math.random() * 2 + 2 + 's';
+            confeti.style.animationDelay = Math.random() * 1 + 's';
+            document.body.appendChild(confeti);
+            setTimeout(() => confeti.remove(), 4000);
+        }
+    }
+    window.addEventListener('load', crearConfeti);
+
+    // === LLUVIA ===
+    for(let i = 0; i < 150; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('drop');
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = Math.random() * 2 + 0.8 + 's';
+        drop.style.animationDelay = Math.random() * 5 + 's';
+        drop.style.opacity = Math.random() * 0.6 + 0.3;
+        drop.style.height = Math.random() * 18 + 6 + 'px';
+        document.getElementById('rainContainer').appendChild(drop);
+    }
+
+    // === CONTADOR ===
+    const eventDate = new Date(2026, 6, 18, 19, 0, 0);
+    let yaMostradoMensaje = false;
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventDate.getTime() - now;
+        if (distance < 0) {
+            document.getElementById('days').innerHTML = "00";
+            document.getElementById('hours').innerHTML = "00";
+            document.getElementById('minutes').innerHTML = "00";
+            document.getElementById('seconds').innerHTML = "00";
+            if (!yaMostradoMensaje) {
+                const container = document.querySelector('.countdown-container p');
+                if (container && !container.innerHTML.includes("HOY ES")) {
+                    container.innerHTML += " <strong>🎉 ¡HOY ES LA GRAN CELEBRACIÓN! 🎉</strong>";
+                    yaMostradoMensaje = true;
+                    crearConfeti();
+                }
+            }
+            return;
+        }
+        document.getElementById('days').innerHTML = Math.floor(distance / (1000*60*60*24));
+        document.getElementById('hours').innerHTML = Math.floor((distance % (24*60*60*1000)) / (1000*60*60));
+        document.getElementById('minutes').innerHTML = Math.floor((distance % (60*60*1000)) / (1000*60));
+        document.getElementById('seconds').innerHTML = Math.floor((distance % (60*1000)) / 1000);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // === GALERÍA LIGHTBOX ===
+    const galleryContainer = document.getElementById('galleryContainer');
+    ['recuerdo_1.jpg','recuerdo_2.jpg','recuerdo_3.jpg','recuerdo_4.jpg','recuerdo_5.jpg','recuerdo_6.jpg'].forEach((src, i) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        const link = document.createElement('a');
+        link.href = src;
+        link.setAttribute('data-lightbox', 'galeria');
+        const img = document.createElement('img');
+        img.src = src;
+        img.onerror = () => img.src = 'https://picsum.photos/id/20/400/400';
+        link.appendChild(img);
+        item.appendChild(link);
+        galleryContainer.appendChild(item);
+    });
+
+    // === CARRUSEL ===
+    new Swiper('.mySwiper', {
+        slidesPerView: 1, spaceBetween: 20, loop: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: { 640: { slidesPerView: 2 }, 768: { slidesPerView: 3 } }
+    });
+
+    // === CARTA SECRETA ===
+    document.getElementById('secretEnvelope').onclick = () => {
+        const msg = document.getElementById('secretMessage');
+        msg.style.display = msg.style.display === 'none' || msg.style.display === '' ? 'block' : 'none';
+    };
+
+    // === ADMIN ===
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true') document.getElementById('adminPanel').style.display = 'block';
+
+    function guardarConfirmacion(nombre) {
+        let lista = JSON.parse(localStorage.getItem('confirmaciones18')) || [];
+        lista.push({ nombre, fecha: new Date().toLocaleString() });
+        localStorage.setItem('confirmaciones18', JSON.stringify(lista));
+    }
+
+    document.getElementById('rsvpForm').onsubmit = (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre').value.trim();
+        if (!nombre) { document.getElementById('formFeedback').innerHTML = '<span style="color:#b33;">❌ Escribe tu nombre</span>'; return; }
+        guardarConfirmacion(nombre);
+        window.open(`https://wa.me/525519695621?text=${encodeURIComponent(`🎓 Hola! Soy ${nombre} y confirmo mi asistencia a los 18 años de Lluvia Naomi el 18 de Julio 2026 a las 7pm. ¡Nos vemos! 🌧️✨`)}`, '_blank');
+        document.getElementById('formFeedback').innerHTML = '<span style="color:#5a7a3a;">✨ Redirigiendo a WhatsApp... ✨</span>';
+        document.getElementById('rsvpForm').reset();
+        setTimeout(() => document.getElementById('formFeedback').innerHTML = '', 4000);
+    };
+
+    if (urlParams.get('admin') === 'true') {
+        document.getElementById('verConfirmacionesBtn').onclick = () => {
+            const lista = JSON.parse(localStorage.getItem('confirmaciones18')) || [];
+            const div = document.getElementById('listaConfirmaciones');
+            if (lista.length === 0) div.innerHTML = '<p><em>Sin respuestas</em></p>';
+            else div.innerHTML = '<ul>' + lista.map(c => `<li><strong>${c.nombre}</strong> - ${c.fecha}</li>`).join('') + '</ul>';
+        };
+        document.getElementById('borrarConfirmacionesBtn').onclick = () => { if(confirm('¿Borrar todo?')) { localStorage.removeItem('confirmaciones18'); document.getElementById('listaConfirmaciones').innerHTML = '<p><em>Vacío</em></p>'; } };
+    }
+
+    // === CALENDARIO ===
+    document.getElementById('calendarBtn').onclick = () => {
+        window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=18%20Años%20-%20Lluvia%20Naomi&dates=20260718T190000/20260719T020000&details=Te%20esperamos!&location=Teoyolquilma%20Manzana%20016,%20Chimalhuacán`, '_blank');
+    };
+
+    // === COMPARTIR ===
+    document.getElementById('shareBtn').onclick = () => {
+        window.open(`https://wa.me/?text=${encodeURIComponent("✨ ¡Invitación a mis 18 años! ✨\n📅 18 Julio 2026 · 7pm\n📍 Teoyolquilma Manzana 016, Chimalhuacán")}`, '_blank');
+    };
+
+    // === MÚSICA (primer clic) ===
+    let audio = null, musicPlaying = false;
+    const musicBtn = document.getElementById('musicBtn');
+    const nowPlaying = document.getElementById('nowPlaying');
+    const musicIcon = musicBtn.querySelector('i');
+
+    function initAudio() {
+        if (audio) return;
+        audio = new Audio('Lluvia_Eddie_Santiago.mp3');
+        audio.loop = true;
+        audio.volume = 0.35;
+        audio.addEventListener('play', () => { musicPlaying = true; musicBtn.classList.add('playing'); musicIcon.className = 'fas fa-pause'; nowPlaying.innerHTML = '🎵 Lluvia - Eddie Santiago ♪'; });
+        audio.addEventListener('pause', () => { musicPlaying = false; musicBtn.classList.remove('playing'); musicIcon.className = 'fas fa-play'; nowPlaying.innerHTML = '🎵 Lluvia - Eddie Santiago'; });
+        audio.addEventListener('error', () => { nowPlaying.innerHTML = '⚠️ Coloca "Lluvia_Eddie_Santiago.mp3"'; });
+    }
+
+    function iniciarMusicaAlPrimerClick() {
+        initAudio();
+        if (!musicPlaying) audio.play().catch(e => console.log('Error al reproducir'));
+        document.removeEventListener('click', iniciarMusicaAlPrimerClick);
+        document.removeEventListener('touchstart', iniciarMusicaAlPrimerClick);
+    }
+    document.addEventListener('click', iniciarMusicaAlPrimerClick);
+    document.addEventListener('touchstart', iniciarMusicaAlPrimerClick);
+
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        initAudio();
+        if (musicPlaying) audio.pause();
+        else audio.play().catch(e => console.log('Error'));
+    });
+</script>
+</body>
+</html>
